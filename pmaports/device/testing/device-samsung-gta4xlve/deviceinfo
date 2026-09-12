@@ -1,0 +1,37 @@
+# Reference: <https://postmarketos.org/deviceinfo>
+# Please use double quotes only. You can source this file in shell
+# scripts.
+
+deviceinfo_format_version="0"
+deviceinfo_name="Samsung Galaxy Tab S6 Lite (2022)"
+deviceinfo_manufacturer="Samsung"
+deviceinfo_codename="samsung-gta4xlve"
+deviceinfo_year="2022"
+deviceinfo_arch="aarch64"
+
+# Device related
+deviceinfo_chassis="tablet"
+deviceinfo_screen_width="1200"
+deviceinfo_screen_height="2000"
+deviceinfo_drm="true"
+deviceinfo_external_storage="true"
+
+# Bootloader related
+deviceinfo_flash_method="heimdall-bootimg"
+deviceinfo_flash_sparse="true"
+deviceinfo_flash_pagesize="4096"
+deviceinfo_boot_filesystem="fat32"
+
+# Tab S6 Lite використовує eMMC (розмір сектора 512, не 4096 як у UFS)
+deviceinfo_rootfs_image_sector_size="512"
+
+# Розділ для прошивки rootfs через heimdall
+deviceinfo_flash_heimdall_partition_rootfs="USERDATA"
+
+# The DTBO flashed alongside this kernel must list "qcom,sm7125" in its root
+# compatible. sboot merges the overlay's root properties into the base DT and
+# thereby replaces the ones set here, and if the SoC compatible is lost the
+# kernel's tzmem SHM Bridge blacklist (which names sm7125) stops matching. TZ
+# then rejects every PAS metadata buffer and GPU, ADSP, CDSP, venus and IPA all
+# fail to load with a bare -EINVAL.
+deviceinfo_dtb="qcom/sm7125-samsung-gta4xlve"

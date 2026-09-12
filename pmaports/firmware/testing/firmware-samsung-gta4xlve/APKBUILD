@@ -1,0 +1,38 @@
+# Reference: <https://postmarketos.org/devicepkg>
+maintainer="Viktor Zaritskyi <viktorzarickiy@gmail.com>"
+pkgname=firmware-samsung-gta4xlve
+pkgver=1
+pkgrel=0
+pkgdesc="Firmware for Samsung Galaxy Tab S6 Lite (2022)"
+url="https://postmarketos.org"
+arch="aarch64"
+license="proprietary"
+depends="linux-firmware-ath10k linux-firmware-qcom"
+source="gta4xlve-firmware.tar.gz
+	30-initramfs-firmware.files
+	firmware.files
+"
+options="
+	!archcheck
+	!check
+	!strip
+	!tracedeps
+	pmb:cross-native
+	textrels
+"
+builddir="$srcdir"
+
+package() {
+	local _i
+	while IFS="" read -r _i || [ -n "$_i" ]; do
+		install -Dm644 "$builddir"/"$_i" "$pkgdir"/"$_i"
+	done < "$srcdir"/firmware.files
+
+	install -Dm644 "$srcdir"/30-initramfs-firmware.files \
+		-t "$pkgdir"/usr/share/mkinitfs/files
+}
+sha512sums="
+c022a08b6b3426ffbeb64f12bb50c141b7686811d6272827ef43342da2772ae59f02c1144425751d89247612e9bea1d4a04b9f350d8091ea7ae3d84a329426be  gta4xlve-firmware.tar.gz
+4a3bd78d6024be4e13f5e97109ff4cff98edf87fc18529a87e2a238c8f780ba7a6cd1e903ac76b033776345977cb6f8261a61498c44afb315ab9d9f0a1c55d87  30-initramfs-firmware.files
+d87025ad8f19b2497e0e09c6e8eddebe52c1ccf9fcf9c3572791b17d0c519e4afc8c498277ca5ca084fccb882b4f1ebdaa656c19105ba4c75ddc1f72cc0c34be  firmware.files
+"
