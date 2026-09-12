@@ -10,7 +10,7 @@ blobs, network connection files, Bluetooth pairing keys and user data.
 - `pmaports/` contains the original `device-samsung-gta4xlve` and
   `firmware-samsung-gta4xlve` package recipes. The firmware recipe needs a
   locally extracted `gta4xlve-firmware.tar.gz`; do not commit or redistribute
-  that vendor archive.
+  that vendor archive. See [the firmware reproduction notes](docs/firmware.md).
 - `config/mobian/Samsung/gta4xlve/` contains the ALSA UCM profile that makes
   the internal audio card usable.
 - `config/mobian/wireplumber/60-alsa-s16.conf` works around silent speakers
