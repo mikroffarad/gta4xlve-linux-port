@@ -1,0 +1,87 @@
+{{Infobox device
+| manufacturer = Samsung
+| name = Galaxy Tab S6 Lite (2022)
+| codename = samsung-gta4xlve
+| model = SM-P613
+| releaseyear = 2022
+| category = testing
+| originalsoftware = Android
+| originalversion = 14
+| pmoskernel = 6.14.7-sm7125
+| chipset = Qualcomm Snapdragon 720G (SM7125)
+| cpu = 2.3 GHz Kryo 465
+| gpu = Adreno 618
+| display = 1200x2000 LCD
+| storage = 64 GB / 128 GB UFS
+| memory = 4 GB
+| architecture = aarch64
+| type = tablet
+| status_usbnet = Y
+| status_flashing = Y
+| status_touch = Y
+| status_screen = Y
+| status_3d = Y
+| status_emmc = Y
+| status_wifi = Y
+| status_mainline = N
+| status_battery = Y
+| status_audio = P
+| status_bluetooth = Y
+| status_keyboard = -
+| status_sdcard = Y
+| status_haptics = Y
+| status_fossbootloader = N
+| booting = yes
+| status = Downstream kernel port; device package not yet merged
+}}
+
+This page documents an experimental postmarketOS port for the Wi-Fi Samsung
+Galaxy Tab S6 Lite (2022), model SM-P613. It uses a downstream SM7125 kernel,
+not mainline Linux. No official postmarketOS image is available yet.
+
+== Contributors ==
+* Viktor Zaritskyi
+
+== Users owning this device ==
+{{Device owners}}
+
+== Hardware notes ==
+
+=== Display and touchscreen ===
+The BOE TV104WUM panel, DCS backlight and Himax HX83102E SPI touchscreen work.
+The panel needs a delay after reset before its initialization sequence.
+
+=== Audio ===
+Internal speakers work through the two TAS2562 amplifiers on QUINARY_MI2S.
+The wired headset and microphone paths are not working, so audio is marked
+partial. The UCM profile is part of the device package work.
+
+=== Wireless ===
+Wi-Fi requires booting the WCN3990 firmware on the modem remote processor.
+Bluetooth works, including A2DP, with `ibs_host_sleep=0` for the QCA UART
+controller.
+
+== Installation ==
+There is no released image or merged device package. This is a developer port;
+use the source archive and kernel branch below. Flashing modified boot or
+userdata images can erase data or make the device fail to boot. Keep a known
+working Android boot image and use Samsung Download Mode for recovery.
+
+== Known limitations ==
+* The kernel is downstream and not mainline.
+* Wired headset and microphone audio are not working.
+* Camera, suspend/resume, sensors, stylus and USB-OTG have not been validated
+  for this port.
+* Required Qualcomm/Samsung firmware is proprietary and is not distributed in
+  the source archive.
+
+== See also ==
+* [https://github.com/mikroffarad/linux/tree/gta4xlve-dev Kernel branch]
+* [https://github.com/mikroffarad/gta4xlve-linux-port Port source archive and documentation]
+* [https://github.com/sm7125-mainline/linux/pull/6 Initial kernel enablement pull request]
+
+[[Category:Devices]]
+[[Category:Tablet]]
+[[Category:Aarch64]]
+[[Category:Samsung]]
+[[Category:Android]]
